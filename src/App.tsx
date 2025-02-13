@@ -14,7 +14,7 @@ const HeartBackground = () => {
   const [position, setPosition] = useState({ top: 0, left: 0, isMoved: false });
   const [opacity, setOpacity] = useState(1);
   const [clicked, setClicked] = useState(false);
-  const [noCount, setNoCount] = useState(-1);
+  const [noCount, setNoCount] = useState(0);
   const fadeOut = () => {
     if (isMobile) {
       setClicked(true);
