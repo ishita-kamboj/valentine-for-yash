@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { Button } from "react-bootstrap";
 import { PUBLIC_URL } from "./constants.ts";
+import { Opacity } from "@tsparticles/engine";
 
 const HeartBackground = () => {
   const hearts = Array.from({ length: 30 }, (_, index) => ({
@@ -59,11 +60,15 @@ const HeartBackground = () => {
     if (opacity>0) {
       setImgSrc(`${PUBLIC_URL}/cry_${noCount}.gif`);
       setDisplayText(displayMessage[noCount]);
-    } else if (opacity === 0) {
+    } 
+  },[noCount])
+
+  useEffect(() => {
+    if (opacity === 0) {
       setImgSrc(`${PUBLIC_URL}/smirk1.gif`);
       setDisplayText(displayMessage[4]);
     }
-  },[noCount])
+  },[opacity])
 
   console.log('img src ---->', imgSrc)
 
