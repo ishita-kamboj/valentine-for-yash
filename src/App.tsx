@@ -126,8 +126,8 @@ const HeartBackground = () => {
             alt="Animated GIF"
             style={{
               // marginLeft: "15vh",
-              height: imgSrc === `${PUBLIC_URL}/requesting_teddy.gif` ? '200px': "300px",
-              width: imgSrc === `${PUBLIC_URL}/requesting_teddy.gif` ? '200px':"300px",
+              height: "300px",
+              width: "300px",
               transition: "transform 0.5s ease-in-out",
             }}
           />
