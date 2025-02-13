@@ -180,7 +180,7 @@ const HeartBackground = () => {
             <Button
               ref={buttonRef}
               // style={{ backgroundColor: "#b0b0b0", border: "none", width: "20%" }}
-              // onMouseEnter={handleHover}
+              onMouseEnter={handleHover}
               onClick={fadeOut}
               className="no-button"
               style={{
