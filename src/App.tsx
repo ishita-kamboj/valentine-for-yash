@@ -126,8 +126,8 @@ const HeartBackground = () => {
             alt="Animated GIF"
             style={{
               // marginLeft: "15vh",
-              height: "300px",
-              width: "300px",
+              height: imgSrc === `${PUBLIC_URL}/requesting_teddy.gif` ? '200px': "300px",
+              width: imgSrc === `${PUBLIC_URL}/requesting_teddy.gif` ? '200px':"300px",
               transition: "transform 0.5s ease-in-out",
             }}
           />
@@ -189,7 +189,7 @@ const HeartBackground = () => {
           fontWeight: "500",
         }}
       >
-        Made by your Cutie Patootie &#129325;
+        Made by your Ishuuuuu &#129325;
       </footer>
     </div>
   );
