@@ -14,7 +14,7 @@ const HeartBackground = () => {
   const [position, setPosition] = useState({ top: 0, left: 0, isMoved: false });
   const [opacity, setOpacity] = useState(1);
   const [clicked, setClicked] = useState(false);
-  const [noCount, setNoCount] = useState(0);
+  const [noCount, setNoCount] = useState(-1);
   const fadeOut = () => {
     if (isMobile) {
       setClicked(true);
@@ -48,14 +48,21 @@ const HeartBackground = () => {
   }, []);
 
   useEffect(() => {
-    if (position.isMoved || clicked) {
+    if (position.isMoved) {
+      setImgSrc(`${PUBLIC_URL}/cry_${noCount}.gif`);
+      setDisplayText(displayMessage[noCount]);
+    } 
+  }, [position.isMoved]);
+
+  useEffect(() => {
+    if (opacity>0) {
       setImgSrc(`${PUBLIC_URL}/cry_${noCount}.gif`);
       setDisplayText(displayMessage[noCount]);
     } else if (opacity === 0) {
       setImgSrc(`${PUBLIC_URL}/smirk1.gif`);
       setDisplayText(displayMessage[4]);
     }
-  }, [position.isMoved, clicked]);
+  },[noCount])
 
   useEffect(() => {
     if (yes) {
@@ -173,7 +180,7 @@ const HeartBackground = () => {
             <Button
               ref={buttonRef}
               // style={{ backgroundColor: "#b0b0b0", border: "none", width: "20%" }}
-              onMouseEnter={handleHover}
+              // onMouseEnter={handleHover}
               onClick={fadeOut}
               className="no-button"
               style={{
