@@ -16,11 +16,11 @@ const HeartBackground = () => {
   const [clicked, setClicked] = useState(false);
   const [noCount, setNoCount] = useState(0);
   const fadeOut = () => {
-    if (isMobile) {
+    // if (isMobile) {
       setClicked(true);
       setNoCount(noCount + 1);
       if (opacity > 0) setOpacity(opacity - 0.2);
-    }
+    // }
   };
   const [yes, setYes] = useState(false);
   const [displayText, setDisplayText] = useState("Will you be my Valentine?");
