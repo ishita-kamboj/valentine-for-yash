@@ -64,6 +64,8 @@ const HeartBackground = () => {
     }
   },[noCount])
 
+  console.log('img src ---->', imgSrc)
+
   useEffect(() => {
     if (yes) {
       setPosition({ ...position, isMoved: false });
@@ -180,7 +182,7 @@ const HeartBackground = () => {
             <Button
               ref={buttonRef}
               // style={{ backgroundColor: "#b0b0b0", border: "none", width: "20%" }}
-              onMouseEnter={handleHover}
+              // onMouseEnter={handleHover}
               onClick={fadeOut}
               className="no-button"
               style={{
