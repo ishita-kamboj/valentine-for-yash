@@ -18,7 +18,7 @@ const HeartBackground = () => {
   const fadeOut = () => {
     // if (isMobile) {
       setClicked(true);
-      if(noCount <= 3)
+      if(noCount < 3)
         setNoCount(noCount + 1);
       if (opacity > 0) setOpacity(opacity - 0.2);
     // }
