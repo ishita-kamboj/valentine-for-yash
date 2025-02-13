@@ -17,13 +17,23 @@ const HeartBackground = () => {
   const [clicked, setClicked] = useState(false);
   const [noCount, setNoCount] = useState(0);
   const fadeOut = () => {
-    // if (isMobile) {
-      setClicked(true);
-      if(noCount < 3)
-        setNoCount(noCount + 1);
-      if (opacity > 0) setOpacity(opacity - 0.2);
-    // }
+    if (isMobile) {
+    setClicked(true);
+    setNoCount(noCount + 1);
+    if (noCount < 4) {
+      setImgSrc(`${PUBLIC_URL}/cry_${noCount}.gif`);
+      setDisplayText(displayMessage[noCount]);
+    }
+    if (opacity > 0) setOpacity(opacity - 0.2);
+    }
   };
+
+  useEffect(() => {
+    if (noCount > 4) {
+      setImgSrc(`${PUBLIC_URL}/smirk1.gif`);
+      setDisplayText(displayMessage[4]);
+    }
+  }, [noCount]);
   const [yes, setYes] = useState(false);
   const [displayText, setDisplayText] = useState("Will you be my Valentine?");
   const [imgSrc, setImgSrc] = useState(`${PUBLIC_URL}/requesting_teddy.gif`);
@@ -33,7 +43,7 @@ const HeartBackground = () => {
     "Why are you doing this to me?",
     "Guess you don't love me anymore...",
     "This was all for nothing",
-    "Hehehe, you really thought you could say no to me?"
+    "Hehehe, you really thought you could say no to me?",
   ];
   const [width, setWidth] = useState("20%");
 
@@ -51,26 +61,11 @@ const HeartBackground = () => {
 
   useEffect(() => {
     if (position.isMoved) {
-      setImgSrc(`${PUBLIC_URL}/cry_${noCount}.gif`);
-      setDisplayText(displayMessage[noCount]);
-    } 
-  }, [position.isMoved]);
-
-  useEffect(() => {
-    if (opacity>0) {
-      setImgSrc(`${PUBLIC_URL}/cry_${noCount}.gif`);
-      setDisplayText(displayMessage[noCount]);
-    } 
-  },[noCount])
-
-  useEffect(() => {
-    if (opacity === 0) {
       setImgSrc(`${PUBLIC_URL}/smirk1.gif`);
       setDisplayText(displayMessage[4]);
     }
-  },[opacity])
+  }, [position.isMoved]);
 
-  console.log('img src ---->', imgSrc)
 
   useEffect(() => {
     if (yes) {
@@ -188,7 +183,7 @@ const HeartBackground = () => {
             <Button
               ref={buttonRef}
               // style={{ backgroundColor: "#b0b0b0", border: "none", width: "20%" }}
-              // onMouseEnter={handleHover}
+              onMouseEnter={handleHover}
               onClick={fadeOut}
               className="no-button"
               style={{
