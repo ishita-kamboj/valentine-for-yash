@@ -14,9 +14,11 @@ const HeartBackground = () => {
   const [position, setPosition] = useState({ top: 0, left: 0, isMoved: false });
   const [opacity, setOpacity] = useState(1);
   const [clicked, setClicked] = useState(false);
+  const [noCount, setNoCount] = useState(0);
   const fadeOut = () => {
     if (isMobile) {
       setClicked(true);
+      setNoCount(noCount + 1);
       if (opacity > 0) setOpacity(opacity - 0.2);
     }
   };
@@ -24,10 +26,16 @@ const HeartBackground = () => {
   const [displayText, setDisplayText] = useState("Will you be my Valentine?");
   const [imgSrc, setImgSrc] = useState(`${PUBLIC_URL}/requesting_teddy.gif`);
   const [isMobile, setIsMobile] = useState(false);
-  const [width, setWidth] = useState('20%')
+  const displayMessage = [
+    "Please, think again...",
+    "Why are you doing this to me?",
+    "Guess you don't love me anymore...",
+    "This was all for nothing",
+    "Hehehe, you really thought you could say no to me?"
+  ];
+  const [width, setWidth] = useState("20%");
 
   const buttonRef = useRef<HTMLButtonElement>(null);
-
 
   useEffect(() => {
     // Detect touch devices (mobile)
@@ -41,8 +49,11 @@ const HeartBackground = () => {
 
   useEffect(() => {
     if (position.isMoved || clicked) {
-      setImgSrc(`${PUBLIC_URL}/sad_teddy.gif`);
-      setDisplayText("You don't love me anymore...");
+      setImgSrc(`${PUBLIC_URL}/cry_${noCount}.gif`);
+      setDisplayText(displayMessage[noCount]);
+    } else if (opacity === 0) {
+      setImgSrc(`${PUBLIC_URL}/smirk1.gif`);
+      setDisplayText(displayMessage[4]);
     }
   }, [position.isMoved, clicked]);
 
@@ -132,10 +143,10 @@ const HeartBackground = () => {
             }}
           />
           <p
-          className="display-text"
+            className="display-text"
             style={{
               fontWeight: "700",
-              fontSize: window.innerWidth < 450 ? "1.5rem": '2rem',
+              fontSize: window.innerWidth < 450 ? "1.5rem" : "2rem",
             }}
           >
             {displayText}
@@ -149,11 +160,11 @@ const HeartBackground = () => {
             style={{ width: "50vw", margin: "auto" }}
           >
             <Button
-            className="yes-button"
+              className="yes-button"
               style={{
                 backgroundColor: "#d72638",
                 border: "none",
-                width:"20%",
+                width: "20%",
               }}
               onClick={() => setYes(true)}
             >
